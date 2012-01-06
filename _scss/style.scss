@@ -1,0 +1,322 @@
+// Here's where we define some default constants
+@import "partials/base";
+
+// Then we'll import the compass extension
+@import "html5-boilerplate";
+
+// Now, you can simply include everything
+// (except print and helpers) by uncommeting this line
+//@include html5-boilerplate;
+
+// Or, you can pick and choose only the sections
+// you want by using the this include
+@include html5-boilerplate-normalize((
+  html5,
+  base,
+  selection,
+  links,
+  typography,
+  lists,
+  images,
+  svg,
+  figures,
+  forms,
+  tables
+));
+
+
+// Or, you can import the "overrides" partial if
+// you want more control over individual mixins
+//@import "partials/overrides";
+
+// Finally, put your own styles in these partials
+// and add more as needed (i.e. forms, tables, nav)
+@import "partials/fonts";
+@import "partials/page";
+
+// Helpers classes should come second-to-last
+@include html5-boilerplate-helpers((
+  ir,
+  hidden,
+  visuallyhidden,
+  invisible,
+  clearfix
+));
+@import "compass/utilities/general/clearfix";
+
+// Media should come last
+@import "partials/media";
+
+$row-height:80px;
+$row-height-small:60px;
+
+//Fonts
+$serif:Georgia, _serif;
+$sans:'Helvetica Neue', Arial, Hevletica, _sans;
+
+//patterns
+$dark-gray-stipple:url('../_images/dark-noise.jpg');
+
+//Colors
+$dark-gray-trans:rgba(81, 81, 81, .54);
+$black-trans:rgba(0, 0, 0, .8);
+$gray-border:#999;
+$gray-border-trans:rgba($gray-border, .7);
+$gray:#999;
+$black-text:#464646;
+
+
+
+$green-sys:#31b39b;
+$pink-sys:#ba2966;
+$gold:rgb(231,173,67);
+$red:rgb(190, 78, 84);
+$purple:rgb(148, 71, 135);
+$blue:rgb(0, 161, 198);
+$green:rgb(75, 142, 113);
+$orange:#ff0033;
+$colors: $gold, $red, $purple, $blue, $green, $pink-sys, $green-sys, $orange;
+$colorn: gold, red, purple, blue, green, pink-sys, green-sys, orange;
+
+/* Definie background colors */
+$i:1;
+@each $color in $colorn {
+	$c : nth($colors, $i);
+	.#{$color} {
+		background-color:#{$c} !important;
+	}
+	.highlight-#{$color} {
+		border-left:4px solid #{$c};
+	}
+	.text-#{$color} {
+		color: #{$c};
+	}
+	$i:$i+1;
+}
+
+
+
+.white {
+	background-color:white;
+}
+
+
+* {
+	box-sizing:border-box;
+}
+
+.dark-noise {
+	background-image:$dark-gray-stipple; 
+}
+
+.schedule-grid, .project-grid {
+	width:90%; margin:auto;
+}
+
+.sked-grid-header {
+	margin-bottom:15px;
+	clear:both;
+	.sked-grid-header-cell {
+		width:resp(188);
+		background-color:$black-trans;
+		font-family:$sans;
+		float:left;
+		margin-right:resp(5);
+		padding:5px 8px;
+		color:$black-text;
+		&:last-child {
+			margin-right:0px;
+		}
+	}
+}
+
+
+.project-grid {
+	.project-body {
+		padding-left:5px;
+		padding-bottom:8px;
+	}	
+	
+	.project-group {
+		margin-bottom:40px;
+	}
+
+	.sked-day {
+		min-height:$row-height-small;
+	}
+	
+	
+	.sked-band {
+		min-height:$row-height-small;
+	}
+	.person-row {
+		min-height:$row-height-small;
+		@include pie-clearfix;
+		border-bottom:1px solid $gray-border;
+		padding-bottom:10px;
+		.person-cell-name {
+			background-color:transparent;
+			min-height:$row-height-small;
+			color:$black-text;
+		}	
+	}
+	
+}		
+.sked-day:hover {
+	background-color:rgba(255, 255, 255, .05);
+}
+.sked-day {
+	border:0px solid $pink-sys;
+	border-radius:5px;
+	float:left;
+	width:5%;
+	min-height:$row-height;
+}
+.sked-band {
+	border-radius:5px;
+	float:left;
+	min-height:$row-height;
+	background-color:black;
+	padding:6px 10px;
+	
+	.project-name {
+		color:white;
+		display:block;
+		font-size:empx(14);
+		text-decoration:none;
+		font-weight:bold;
+		margin-bottom:4px;
+	}
+	
+}
+
+.band-project-selector {
+	display:block;
+	font-size:empx(16);
+}
+
+.sked-band:hover {
+	
+}
+
+.sked-band-unavailable {
+	background-color:rgba(255, 255, 255, .4);
+	.project-name {
+		color:black;
+	}
+}
+.sked-band-task {
+	border:0px;
+	color:white;
+	background-color:transparent;
+	margin-left:-2px;
+}
+
+.ui-selecting { background:adjust-lightness($pink-sys, 20) }
+
+.ui-selected { background:$pink-sys}
+
+.person-cell-sked {
+	float:left;
+	@include respw(766);
+}
+
+.person-name, a.person-name {
+	font-family:Georgia;
+	font-weight:normal;
+	font-size:26px;
+	color:inherit;
+	text-decoration:none;
+}
+
+
+.person-row {
+	min-height:$row-height;
+	opacity:.8;
+	margin-bottom:5px;
+	.person-cell-name {
+		background-color:$dark-gray-trans;
+		display:block;
+		float:left;
+		@include respw(188);
+		padding:5px 10px;
+		margin-right:resp(5);
+		min-height:$row-height;
+	}	
+}
+
+.person-row:hover {
+	opacity:1;
+	
+	.person-name {
+		color:white;
+	}	
+}
+
+.row-adder, a.row-adder {
+	border: 1px solid $gray-border;
+	text-align:center;
+	font-family:$serif;
+	color:$gray;
+	font-size:24px;
+	text-decoration:none;
+	padding:25px;
+	display:block;
+	min-height:$row-height;
+	&.small {
+		width: 50%;
+		margin:15px auto;
+		border-radius: 12px;
+		font-size: 18px;
+		padding: 10px;
+		min-height: 0px;
+	}
+	&:hover {
+		background-color:rgba(white, .7);
+	}
+}	
+
+.row-adder:hover, a.row-adder:hover {
+	border-color:$pink-sys;
+	color:$pink-sys;
+}
+
+.project-header {
+	background-color:$black-trans;
+	color:$black-text;
+	padding:5px 10px;
+	margin-bottom:5px;
+	.project-name {
+		float:left;
+		margin-right:5px;
+	}
+	.project-info {
+		float:left;
+		.num-budgeted {
+			font-weight:bold;
+		}
+		.num-scheduled {
+			font-weight:bold;
+		}
+	}
+	.adders {
+		float:right;
+	}
+}
+
+/* Modal */
+.modal-big {
+	display:none;
+	background-image:$dark-gray-stipple;
+	border:8px solid $gray-border;
+	@include border-radius(10px);	
+	width:700px;
+	display:block;
+	min-height:450px;
+	margin:auto;
+	padding:20px 40px;
+}
+
+#simplemodal-overlay {
+	background-color:rgba(0, 0, 0, .8);
+}

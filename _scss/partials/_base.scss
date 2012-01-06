@@ -1,0 +1,31 @@
+// This file must be imported before loading html5-boilerplate
+
+// base
+$base-font-family: unquote("sans-serif");
+$base-font-size: 13px;
+$base-line-height: 1.231;
+$font-color: #222;
+
+// Links
+$link-color: #00e;
+$link-visited-color: #551a8b;
+$link-hover-color: #06e;
+
+// Lists
+$list-left-margin: 40px;
+
+h1, h2, h3, h4, h5, h6, p {
+	margin:0px;
+}
+
+@mixin respw($target, $context : 960 ){
+	width: percentage($target / $context); 
+}
+
+@function resp($target, $context : 960){
+	@return percentage($target / $context); 
+}
+
+@function empx($px, $doc:12){
+	@return ($px/$doc)em;
+}
